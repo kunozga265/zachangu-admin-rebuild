@@ -4,12 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Exports\LoanExport;
 use App\Http\Resources\LoanResource;
+use App\Mail\ApprovalMail;
 use App\Models\Employee;
 use App\Models\Loan;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
@@ -83,10 +85,14 @@ class LoanController extends Controller
             $now=Carbon::now()->getTimestamp();
 
             if($now<$loan->dueDate){
+
                 $loan->update([
                     'progress' => 3,
                     'approvedDate'=>Carbon::now()->getTimestamp()
                 ]);
+
+                Mail::to($loan->email)->send(new ApprovalMail($loan));
+
             }else
                 return Redirect::back()->with('error','Due date exceeded. Cannot approve loan.');
 
