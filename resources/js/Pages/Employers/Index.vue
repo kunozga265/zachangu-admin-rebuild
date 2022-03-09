@@ -40,7 +40,7 @@
                                  <jet-section-border />
                             </div>
 
-                            <div   v-if="($page.props.employers).length==0" class="m-2 p-6">
+                            <div   v-if="($page.props.employers.data).length==0" class="m-2 p-6">
                                 <div>No Employers found.</div>
                             </div>
 

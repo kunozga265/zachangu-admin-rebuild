@@ -50,22 +50,82 @@ class EmployerController extends Controller
     public function store(Request $request)
     {
         Validator::make($request->all(), [
-            'name'                => ['required'],
-            'address'             => ['required'],
-            'letter'              => ['required'],
-            'email'               => ['required'],
+            'name'                      => ['required'],
+            'physicalAddressName'       => ['required'],
+            'physicalAddressBox'        => ['required'],
+            'physicalAddressLocation'   => ['required'],
+            'proxyName'                 => ['required'],
+            'proxyEmail'                => ['required','email'],
+            'proxyPhoneNumber'          => ['required'],
+            'letter'                    => ['required'],
+            'email'                     => ['required','email'],
         ])->validate();
 
         $employer=Employer::create([
-            'name'                =>$request->name,
-            'address'             =>$request->address,
-            'letter'              =>$request->letter,
-            'email'               =>$request->email,
+            'name'                      =>$request->name,
+            'physicalAddressName'       =>$request->physicalAddressName,
+            'physicalAddressBox'        =>$request->physicalAddressBox,
+            'physicalAddressLocation'   =>$request->physicalAddressLocation,
+            'proxyName'                 =>$request->proxyName,
+            'proxyEmail'                =>$request->proxyEmail,
+            'proxyPhoneNumber'          =>$request->proxyPhoneNumber,
+            'letter'                    =>$request->letter,
+            'email'                     =>$request->email,
         ]);
         $employer->save();
 
         return Redirect::route('employer.show',['id'=>$employer->id]);
 //        return Inertia::render('')
+
+    }
+
+    public function edit($id)
+    {
+        $employer=Employer::find($id);
+
+        if(is_object($employer)){
+            return Inertia::render('Employers/Edit',[
+                'employer'=>$employer
+            ]);
+
+        }else
+            return Redirect::back()->with('error','Invalid employer');
+
+    }
+
+    public function update(Request $request,$id)
+    {
+        Validator::make($request->all(), [
+            'name'                      => ['required'],
+            'physicalAddressName'       => ['required'],
+            'physicalAddressBox'        => ['required'],
+            'physicalAddressLocation'   => ['required'],
+            'proxyName'                 => ['required'],
+            'proxyEmail'                => ['required','email'],
+            'proxyPhoneNumber'          => ['required'],
+            'letter'                    => ['required'],
+            'email'                     => ['required','email'],
+        ])->validate();
+
+        $employer=Employer::find($id);
+
+        if(is_object($employer)){
+            $employer->update([
+                'name'                      =>$request->name,
+                'physicalAddressName'       =>$request->physicalAddressName,
+                'physicalAddressBox'        =>$request->physicalAddressBox,
+                'physicalAddressLocation'   =>$request->physicalAddressLocation,
+                'proxyName'                 =>$request->proxyName,
+                'proxyEmail'                =>$request->proxyEmail,
+                'proxyPhoneNumber'          =>$request->proxyPhoneNumber,
+                'letter'                    =>$request->letter,
+                'email'                     =>$request->email,
+            ]);
+
+            return Redirect::route('employer.show',['id'=>$employer->id]);
+
+        }else
+            return Redirect::back()->with('error','Invalid employer');
 
     }
 }

@@ -2,7 +2,7 @@
     <app-layout>
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                New Employer
+                Edit Employer
             </h2>
         </template>
 
@@ -44,7 +44,7 @@
 
                                 <div class="mt-6">
                                     <jet-label for="Letter" value="Upload agreement letter" />
-                                    <input id="Letter" type="file" @input="letterUpload($event.target.files[0])" class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm" required/>
+                                    <input id="Letter" type="file" @input="letterUpload($event.target.files[0])" class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"/>
                                 </div>
 
                             </div>
@@ -101,6 +101,9 @@
     import JetValidationErrors from '@/Jetstream/ValidationErrors.vue'
 
     export default {
+        props:[
+          'employer'
+        ],
 
         components: {
             AppLayout,
@@ -115,15 +118,15 @@
             return {
                 form: this.$inertia.form({
                     //Personal Information
-                    name:'',
-                    email: '',
-                    letter: '',
-                    physicalAddressName:'',
-                    physicalAddressBox:'',
-                    physicalAddressLocation:'',
-                    proxyName:'',
-                    proxyEmail:'',
-                    proxyPhoneNumber:'',
+                    name:this.employer.name,
+                    email:this.employer.email,
+                    letter:this.employer.letter,
+                    physicalAddressName:this.employer.physicalAddressName,
+                    physicalAddressBox:this.employer.physicalAddressBox,
+                    physicalAddressLocation:this.employer.physicalAddressLocation,
+                    proxyName:this.employer.proxyName,
+                    proxyEmail:this.employer.proxyEmail,
+                    proxyPhoneNumber:this.employer.proxyPhoneNumber,
                 }),
 
                 errorMessage:'',
@@ -177,7 +180,7 @@
                         ... data,
 
                     }))
-                    .post(this.route('employer.store'))
+                    .post(this.route('employer.update',{id:this.employer.id}))
             },
             letterUpload(file){
                 const reader=new FileReader();

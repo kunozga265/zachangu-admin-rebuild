@@ -11,17 +11,75 @@
                 <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                     <div class="p-12 sm:px-20 bg-white border-b border-gray-200">
                         <div>
-                            <inertia-link  :href="route('employee.new',{id:$page.props.employer.id})">
+                            <inertia-link  :href="route('employee.new',{id:employer.id})">
                                 <jet-button>
                                     + New Employee
                                 </jet-button>
                             </inertia-link>
 
-                            <a :href="$page.props.publicPath + $page.props.employer.letter" target="_blank">
-                                <jet-secondary-button>
-                                    Agreement Letter
-                                </jet-secondary-button>
-                            </a>
+
+                            <jet-secondary-button @click.native="dialog=true">
+                                Profile Information
+                            </jet-secondary-button>
+
+
+                               <jet-dialog-modal :show="dialog" @close="closeModal">
+                                <template #title>
+                                    Employer Profile
+                                </template>
+
+                                <template #content class="p-6 md:p-12">
+                                    <div class="grid grid-cols-1 md:grid-cols-2">
+                                        <div class="" >
+                                            <div>{{employer.name}}</div>
+                                            <div class="text-sm text-gray-400">Name</div>
+                                        </div>
+                                        <div class="mt-4 md:ml-4 md:mt-0">
+                                            <div>{{employer.email}}</div>
+                                            <div class="text-sm text-gray-400">Email</div>
+                                        </div>
+
+                                        <div class="mt-4 md:col-span-2">
+                                            <div>{{employer.physicalAddressName}} P. O. Box {{employer.physicalAddressBox}} {{employer.physicalAddressLocation}}</div>
+                                            <div class="text-sm text-gray-400">Name</div>
+                                        </div>
+
+                                        <div class="mt-6">
+                                            <a :href="$page.props.publicPath+employer.letter" target="_blank"> <jet-secondary-button>View File</jet-secondary-button></a>
+                                            <div class="mt-2 text-sm text-gray-400">Agreement Letter</div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="mt-6 text-lg text-gray-400 ">Proxy Details</div>
+
+                                    <div class="grid grid-cols-1 md:grid-cols-2">
+                                        <div class="" >
+                                            <div>{{employer.proxyName}}</div>
+                                            <div class="text-sm text-gray-400">Proxy Name</div>
+                                        </div>
+                                        <div class="mt-4 md:ml-4 md:mt-0">
+                                            <div>{{employer.proxyEmail}}</div>
+                                            <div class="text-sm text-gray-400">Proxy Email</div>
+                                        </div>
+                                        <div class="mt-4">
+                                            <div>+265 {{employer.proxyPhoneNumber}}</div>
+                                            <div class="text-sm text-gray-400">Proxy Phone Number</div>
+                                        </div>
+
+                                    </div>
+
+                                </template>
+
+                                <template #footer>
+                                    <jet-button @click.native="edit">
+                                        Edit
+                                    </jet-button>
+                                    <jet-secondary-button @click.native="closeModal">
+                                        Close
+                                    </jet-secondary-button>
+                                </template>
+                            </jet-dialog-modal>
 
                             <jet-section-border />
                         </div>
@@ -54,65 +112,34 @@ import JetSectionBorder from '@/Jetstream/SectionBorder'
 import JetButton from '@/Jetstream/Button'
 import JetSecondaryButton from '@/Jetstream/SecondaryButton'
 import Employee from './Partials/Employee'
+import JetDialogModal from '@/Jetstream/DialogModal'
 
 export default {
     name: "Show",
     props:[
-
+        'employer'
     ],
     components:{
         JetSectionBorder,
         JetButton,
         JetSecondaryButton,
         AppLayout,
+        JetDialogModal,
         Employee
 
     },
+      data() {
+        return {
+            dialog:false,
+        }
+    },
     methods: {
-
-        getStatus(progress){
-            switch (progress){
-                case '0':
-                    return 'Finish the applying process';
-                    break;
-                case '1':
-                    return 'Waiting for guarantor to approve';
-                    break;
-                case '2':
-                    return 'Waiting for employer to approve';
-                    break;
-                case '3':
-                    return 'Active';
-                    break;
-                case '4':
-                    return 'Closed';
-                    break;
-                default:
-                    return 'Nothing';
-                    break;
-            }
+        edit(){
+            this.$inertia.get(route('employer.edit',{id:this.employer.id}))
         },
-        getStatusColor(progress){
-            switch (progress){
-                case '0':
-                    return '#FBBF24';
-                    break;
-                case '1':
-                    return '#FBBF24';
-                    break;
-                case '2':
-                    return '#FBBF24';
-                    break;
-                case '3':
-                    return '#4ADE80';
-                    break;
-                case '4':
-                    return '#EF4444';
-                    break;
-                default:
-                    break;
-            }
-        },
+       closeModal() {
+                this.dialog = false
+            },
 
     }
 
