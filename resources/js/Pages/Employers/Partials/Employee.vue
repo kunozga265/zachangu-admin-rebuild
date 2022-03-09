@@ -121,9 +121,39 @@
                     </div>
                 </div>
 
+                <!-- Bank Information -->
+                <div class="mt-6">
+                    <div class="flex items-center justify-start">
+                        <div class="mt-0 p-1 h-6 w-6 rounded-full text-white text-center text-xs bg-gray-800 ">3</div>
+                        <span class="text-xl ml-4">Bank Information</span>
+                    </div>
+                    <div class="mt-4 mx-2 p-6  border-l-2 border-gray-200">
+
+                        <div class="grid grid-cols-1 md:grid-cols-2">
+                            <div class="" >
+                                <div>{{employee.bankName}}</div>
+                                <div class="text-sm text-gray-400">Bank Name</div>
+                            </div>
+                            <div class="mt-4 md:ml-4 md:mt-0">
+                                <div>{{employee.bankAccountName}}</div>
+                                <div class="text-sm text-gray-400">Bank Account Name</div>
+                            </div>
+                            <div class="mt-4">
+                                <div>{{employee.bankAccountNumber}}</div>
+                                <div class="text-sm text-gray-400">Bank Account Number</div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
             </template>
 
             <template #footer>
+                <jet-button @click.native="edit">
+                    Edit
+                </jet-button>
                 <jet-button-secondary @click.native="closeModal">
                     Close
                 </jet-button-secondary>
@@ -139,6 +169,7 @@
 import JetSectionBorder from '@/Jetstream/SectionBorder'
 import JetDialogModal from '@/Jetstream/DialogModal'
 import JetButtonSecondary from '@/Jetstream/SecondaryButton'
+import JetButton from '@/Jetstream/Button'
 
 
 export default {
@@ -150,6 +181,7 @@ export default {
         JetSectionBorder,
         JetDialogModal,
         JetButtonSecondary,
+        JetButton,
 
     },
     data() {
@@ -168,6 +200,9 @@ export default {
         },
     },
     methods: {
+        edit(){
+            this.$inertia.get(route('employee.edit',{id:this.employee.id}))
+        },
         url(path){
             return this.$page.props.publicPath+path
         },

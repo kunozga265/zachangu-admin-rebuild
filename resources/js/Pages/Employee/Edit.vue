@@ -2,7 +2,7 @@
     <app-layout>
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-               {{employer.name}} Employee
+               Edit Employee
             </h2>
         </template>
 
@@ -208,7 +208,10 @@
 
     export default {
         props:[
-          'employer'
+          'employee',
+            'physicalAddress',
+            'workAddress',
+            'contractDurationISO',
         ],
 
         components: {
@@ -224,33 +227,34 @@
             return {
                 form: this.$inertia.form({
                     //Personal Information
-                    photo:'',
-                    firstName: '',
-                    middleName: null,
-                    lastName: '',
-                    phoneNumberMobile: '',
-                    phoneNumberWork: '',
-                    email: '',
+                    photo:this.employee.photo,
+                    firstName: this.employee.firstName,
+                    middleName:this.employee.middleName,
+                    lastName: this.employee.lastName,
+                    phoneNumberMobile: this.employee.phoneNumberMobile,
+                    phoneNumberWork: this.employee.phoneNumberWork,
+                    email: this.employee.email,
                     physicalAddress:{},
 
-                    nationalId: '',
-                    employer_id: '',
+                    nationalId: this.employee.nationalId,
+                    employer_id: this.employee.employer_id,
 
                     //Workplace Details
                     workAddress:{},
-                    position:'',
-                    bankName:'',
-                    bankAccountName:'',
-                    bankAccountNumber:'',
-                    contractDuration:new Date().toISOString().substr(0,10),
+                    position:this.employee.position,
+                    bankName:this.employee.bankName,
+                    bankAccountName:this.employee.bankAccountName,
+                    bankAccountNumber:this.employee.bankAccountNumber,
+                    contractDuration:(this.contractDurationISO).substr(0,10),
                 }),
-                physicalAddressName:'',
-                physicalAddressBox:'',
-                physicalAddressLocation:'',
-                workAddressName:'',
-                workAddressBox:'',
-                workAddressLocation:'',
+                physicalAddressName:this.physicalAddress.name,
+                physicalAddressBox:this.physicalAddress.box,
+                physicalAddressLocation:this.physicalAddress.location,
+                workAddressName:this.workAddress.name,
+                workAddressBox:this.workAddress.box,
+                workAddressLocation:this.workAddress.location,
                 today:new Date().toISOString().substr(0,10),
+
                 errorMessage:'',
                 errorSection:'',
             }
@@ -353,9 +357,8 @@
                             location:this.workAddressLocation,
                         },
                         contractDuration: this.duration,
-                        employer_id:this.$page.props.employer.id
                     }))
-                    .post(this.route('employee.store'))
+                    .post(this.route('employee.update',{id:this.employee.id}))
             },
             photoUpload(file){
                 const reader=new FileReader();

@@ -42,6 +42,9 @@ class EmployeeController extends Controller
             'physicalAddress'      => ['required'],
             'workAddress'          => ['required'],
             'nationalId'           => ['required','min:8'],
+            'bankName'     => ['required'],
+            'bankAccountName'     => ['required'],
+            'bankAccountNumber'     => ['required'],
             'contractDuration'     => ['required'],
             'employer_id'          => ['required'],
         ])->validate();
@@ -59,11 +62,84 @@ class EmployeeController extends Controller
             'workAddress'          => json_encode($request->workAddress),
             'nationalId'           => strtoupper($request->nationalId),
             'contractDuration'     => $request->contractDuration,
+            'bankName'             => $request->bankName,
+            'bankAccountName'      => $request->bankAccountName,
+            'bankAccountNumber'    => $request->bankAccountNumber,
             'employer_id'          => $request->employer_id,
         ]);
 
         $employee->save();
 
         return Redirect::route('employer.show',['id'=>$employee->employer_id]);
+    }
+
+    public function edit($id)
+    {
+
+        $employee=Employee::find($id);
+
+        if (is_object($employee)){
+            $time=Carbon::createFromTimestamp($employee->contractDuration);
+
+            return Inertia::render('Employee/Edit',[
+                'employee'=>$employee,
+                'physicalAddress'=>json_decode($employee->physicalAddress),
+                'workAddress'=>json_decode($employee->workAddress),
+                'contractDurationISO' => $time->toDateTimeString(),
+            ]);
+
+        }else
+            return Redirect::back()->with('error','Invalid employee id');
+
+    }
+
+    public function update(Request $request,$id)
+    {
+        Validator::make($request->all(), [
+            'photo'                => ['required'],
+            'firstName'            => ['required'],
+            'lastName'             => ['required'],
+            'phoneNumberMobile'    => ['required'],
+            'phoneNumberWork'      => ['required'],
+            'position'             => ['required'],
+            'email'                => ['required'],
+            'physicalAddress'      => ['required'],
+            'workAddress'          => ['required'],
+            'nationalId'           => ['required','min:8'],
+            'bankName'             => ['required'],
+            'bankAccountName'      => ['required'],
+            'bankAccountNumber'    => ['required'],
+            'contractDuration'     => ['required'],
+            'employer_id'          => ['required'],
+        ])->validate();
+
+        $employee=Employee::find($id);
+
+        if(is_object($employee)){
+            $employee->update([
+                'photo'                => $request->photo,
+                'firstName'            => $request->firstName,
+                'middleName'           => $request->middleName,
+                'lastName'             => $request->lastName,
+                'phoneNumberMobile'    => $request->phoneNumberMobile,
+                'phoneNumberWork'      => $request->phoneNumberWork,
+                'position'             => $request->position,
+                'email'                => $request->email,
+                'physicalAddress'      => json_encode($request->physicalAddress),
+                'workAddress'          => json_encode($request->workAddress),
+                'nationalId'           => strtoupper($request->nationalId),
+                'contractDuration'     => $request->contractDuration,
+                'bankName'             => $request->bankName,
+                'bankAccountName'      => $request->bankAccountName,
+                'bankAccountNumber'    => $request->bankAccountNumber,
+                'employer_id'          => $request->employer_id,
+            ]);
+
+            return Redirect::route('employer.show',['id'=>$employee->employer_id]);
+
+        }else
+            return Redirect::back()->with('error','Invalid Employee');
+
+
     }
 }
