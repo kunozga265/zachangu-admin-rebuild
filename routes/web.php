@@ -50,6 +50,16 @@ Route::group(['middleware'=>['auth:sanctum','verified','roles']],function () {
             'roles' =>['admin']
         ])->name('employer.store');
 
+        Route::post('/edit/{id}', [
+            "uses" => "App\Http\Controllers\EmployerController@update",
+            'roles' =>['admin']
+        ])->name('employer.update');
+
+        Route::get('/edit/{id}', [
+            "uses" => "App\Http\Controllers\EmployerController@edit",
+            'roles' =>['admin']
+        ])->name('employer.edit');
+
         Route::get('/new', [
             "uses" => "App\Http\Controllers\EmployerController@create",
             'roles' =>['admin']
@@ -74,6 +84,16 @@ Route::group(['middleware'=>['auth:sanctum','verified','roles']],function () {
             "uses" => "App\Http\Controllers\EmployeeController@store",
             'roles' =>['admin']
         ])->name('employee.store');
+
+        Route::post('/{id}', [
+            "uses" => "App\Http\Controllers\EmployeeController@update",
+            'roles' =>['admin']
+        ])->name('employee.update');
+
+        Route::get('/{id}', [
+            "uses" => "App\Http\Controllers\EmployeeController@edit",
+            'roles' =>['admin']
+        ])->name('employee.edit');
 
     });
 
