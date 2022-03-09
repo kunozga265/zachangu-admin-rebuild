@@ -10,7 +10,7 @@
 <body>
 <p>Hello, {{$loan->firstName}} {{$loan->lastName}}!</p>
 <br>
-<p>Zachangu Loans is pleased to inform you that your loan of MK{{$loan->amount}} has been approved. On {{$dueDate}}, you will be requested to pay MK{{$totalAmount}}</p>
+<p>Zachangu Loans is pleased to inform you that your loan of MK{{$loan->amount}} has been approved. On {{$dueDate}}, you will be requested to pay MK{{$loanAmount}}</p>
 <p>You may contact us for more details.</p>
 <br>
 <p>Regards.</p>
