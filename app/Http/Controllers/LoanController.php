@@ -7,6 +7,7 @@ use App\Http\Resources\LoanResource;
 use App\Mail\ApprovalMail;
 use App\Models\Employee;
 use App\Models\Loan;
+use App\Models\Role;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -261,6 +262,8 @@ class LoanController extends Controller
             elseif($loan->progress==7)
                 $status='Rejected';
 
+            $role=Role::where('name','admin')->first();
+            $user=$role->users()->first();
 
             $loansData[] = [
                 'index' => $index,
@@ -273,7 +276,7 @@ class LoanController extends Controller
                 'email' => $loan->email,
                 'nationalIdNumber' => $loan->nationalId,
                 'loanAmount' => $loan->amount,
-                'amountDue' => ($loan->amount) * (1.1) + 510,
+                'amountDue' => ($loan->amount) * (1+$user->interest) + $user->bankCharge,
                 'approvedTime' => $approvedTime,
                 'approvedDate' => $approvedDate,
                 'dueDate' => $dueDate,

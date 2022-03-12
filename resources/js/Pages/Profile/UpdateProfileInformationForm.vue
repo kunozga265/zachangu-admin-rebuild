@@ -1,59 +1,44 @@
 <template>
     <jet-form-section @submitted="updateProfileInformation">
         <template #title>
-            Profile Information
+            System Information
         </template>
 
         <template #description>
-            Update your account's profile information and email address.
+            Update your loan calculation determinants.
         </template>
 
         <template #form>
-            <!-- Profile Photo -->
-            <div class="col-span-6 sm:col-span-4" v-if="$page.props.jetstream.managesProfilePhotos">
-                <!-- Profile Photo File Input -->
-                <input type="file" class="hidden"
-                            ref="photo"
-                            @change="updatePhotoPreview">
 
-                <jet-label for="photo" value="Photo" />
-
-                <!-- Current Profile Photo -->
-                <div class="mt-2" v-show="! photoPreview">
-                    <img :src="user.profile_photo_url" :alt="user.name" class="rounded-full h-20 w-20 object-cover">
-                </div>
-
-                <!-- New Profile Photo Preview -->
-                <div class="mt-2" v-show="photoPreview">
-                    <span class="block rounded-full w-20 h-20"
-                          :style="'background-size: cover; background-repeat: no-repeat; background-position: center center; background-image: url(\'' + photoPreview + '\');'">
-                    </span>
-                </div>
-
-                <jet-secondary-button class="mt-2 mr-2" type="button" @click.native.prevent="selectNewPhoto">
-                    Select A New Photo
-                </jet-secondary-button>
-
-                <jet-secondary-button type="button" class="mt-2" @click.native.prevent="deletePhoto" v-if="user.profile_photo_path">
-                    Remove Photo
-                </jet-secondary-button>
-
-                <jet-input-error :message="form.errors.photo" class="mt-2" />
-            </div>
-
-            <!-- Name -->
+            <!-- Interest -->
             <div class="col-span-6 sm:col-span-4">
-                <jet-label for="name" value="Name" />
-                <jet-input id="name" type="text" class="mt-1 block w-full" v-model="form.name" autocomplete="name" />
-                <jet-input-error :message="form.errors.name" class="mt-2" />
+                <jet-label for="interest" value="Interest" />
+                <jet-input id="interest" type="text" class="mt-1 block w-full" v-model="form.interest" autocomplete="name" />
+                <jet-input-error :message="form.errors.interest" class="mt-2" />
             </div>
 
-            <!-- Email -->
+            <!-- Interest -->
             <div class="col-span-6 sm:col-span-4">
-                <jet-label for="email" value="Email" />
-                <jet-input id="email" type="email" class="mt-1 block w-full" v-model="form.email" />
-                <jet-input-error :message="form.errors.email" class="mt-2" />
+                <jet-label for="lowerLimit" value="Lower Limit" />
+                <jet-input id="lowerLimit" type="text" class="mt-1 block w-full" v-model="form.lowerLimit" autocomplete="name" />
+                <jet-input-error :message="form.errors.lowerLimit" class="mt-2" />
             </div>
+
+            <!-- Interest -->
+            <div class="col-span-6 sm:col-span-4">
+                <jet-label for="upperLimit" value="Upper Limit" />
+                <jet-input id="upperLimit" type="text" class="mt-1 block w-full" v-model="form.upperLimit" autocomplete="name" />
+                <jet-input-error :message="form.errors.upperLimit" class="mt-2" />
+            </div>
+
+            <!-- Interest -->
+            <div class="col-span-6 sm:col-span-4">
+                <jet-label for="bankCharge" value="Bank Charge" />
+                <jet-input id="bankCharge" type="text" class="mt-1 block w-full" v-model="form.bankCharge" autocomplete="name" />
+                <jet-input-error :message="form.errors.bankCharge" class="mt-2" />
+            </div>
+
+
         </template>
 
         <template #actions>
@@ -94,9 +79,10 @@
             return {
                 form: this.$inertia.form({
                     _method: 'PUT',
-                    name: this.user.name,
-                    email: this.user.email,
-                    photo: null,
+                    interest: this.user.interest,
+                    lowerLimit: this.user.lowerLimit,
+                    upperLimit: this.user.upperLimit,
+                    bankCharge: this.user.bankCharge,
                 }),
 
                 photoPreview: null,

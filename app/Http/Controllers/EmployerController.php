@@ -62,11 +62,11 @@ class EmployerController extends Controller
         ])->validate();
 
         $employer=Employer::create([
-            'name'                      =>$request->name,
-            'physicalAddressName'       =>$request->physicalAddressName,
+            'name'                      =>ucwords($request->name),
+            'physicalAddressName'       =>ucwords($request->physicalAddressName),
             'physicalAddressBox'        =>$request->physicalAddressBox,
-            'physicalAddressLocation'   =>$request->physicalAddressLocation,
-            'proxyName'                 =>$request->proxyName,
+            'physicalAddressLocation'   =>ucwords($request->physicalAddressLocation),
+            'proxyName'                 =>ucwords($request->proxyName),
             'proxyEmail'                =>$request->proxyEmail,
             'proxyPhoneNumber'          =>$request->proxyPhoneNumber,
             'letter'                    =>$request->letter,
@@ -111,11 +111,11 @@ class EmployerController extends Controller
 
         if(is_object($employer)){
             $employer->update([
-                'name'                      =>$request->name,
-                'physicalAddressName'       =>$request->physicalAddressName,
+                'name'                      =>ucwords($request->name),
+                'physicalAddressName'       =>ucwords($request->physicalAddressName),
                 'physicalAddressBox'        =>$request->physicalAddressBox,
-                'physicalAddressLocation'   =>$request->physicalAddressLocation,
-                'proxyName'                 =>$request->proxyName,
+                'physicalAddressLocation'   =>ucwords($request->physicalAddressLocation),
+                'proxyName'                 =>ucwords($request->proxyName),
                 'proxyEmail'                =>$request->proxyEmail,
                 'proxyPhoneNumber'          =>$request->proxyPhoneNumber,
                 'letter'                    =>$request->letter,

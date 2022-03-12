@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Loan;
+use App\Models\Role;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -95,7 +96,9 @@ class GuarantorController extends Controller
         $employeeName =$loan->firstName.' '.$loan->lastName;
         $address = $decodedAddress->name.' P. O. Box '.$decodedAddress->box.' '.$decodedAddress->location;
 
-        $interest=10;
+        $role=Role::where('name','admin')->first();
+        $user=$role->users()->first();
+        $interest=($user->interest)*100;
 
 
         return " <div class='mt-4'><strong>Guarantor Agreement [03/00]</strong></div>
