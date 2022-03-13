@@ -22,14 +22,17 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
             'interest' => ['required'],
             'lowerLimit' => ['required'],
             'upperLimit' => ['required'],
+            'bankCharge' => ['required'],
 
         ])->validateWithBag('updateProfileInformation');
 
         $user->forceFill([
-            'interest' => $input['interest'],
-            'lowerLimit' => $input['lowerLimit'],
-            'upperLimit' => $input['upperLimit'],
-            'bankCharge' => $input['bankCharge'],
+            'contents'=> json_encode([
+                'interest' => floatval($input['interest']),
+                'lowerLimit' => intval($input['lowerLimit']),
+                'upperLimit' => intval($input['upperLimit']),
+                'bankCharge' => floatval($input['bankCharge'])
+            ]),
         ])->save();
 
     }

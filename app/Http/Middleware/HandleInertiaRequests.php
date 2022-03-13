@@ -51,6 +51,22 @@ class HandleInertiaRequests extends Middleware
                     'success'=>$request->session()->get('success'),
                     'error'=>$request->session()->get('error'),
                 ];
+            },
+            'contents'=>function() use ($request){
+                $role=Role::where('name','admin')->first();
+                $user=$role->users()->first();
+
+                if (is_object($user)){
+                    $contents=json_decode($user->contents);
+                    return[
+                        'interest'=>$contents->interest,
+                        'lowerLimit'=>$contents->lowerLimit,
+                        'upperLimit'=>$contents->upperLimit,
+                        'bankCharge'=>$contents->bankCharge,
+                    ];
+                }else
+                    return null;
+
             }
         ]);
     }

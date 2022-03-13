@@ -79,10 +79,10 @@
             return {
                 form: this.$inertia.form({
                     _method: 'PUT',
-                    interest: this.user.interest,
-                    lowerLimit: this.user.lowerLimit,
-                    upperLimit: this.user.upperLimit,
-                    bankCharge: this.user.bankCharge,
+                    interest: this.$page.props.contents.interest,
+                    lowerLimit: this.$page.props.contents.lowerLimit,
+                    upperLimit: this.$page.props.contents.upperLimit,
+                    bankCharge: this.$page.props.contents.bankCharge,
                 }),
 
                 photoPreview: null,
