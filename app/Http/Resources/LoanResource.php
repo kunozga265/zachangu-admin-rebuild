@@ -152,7 +152,7 @@ class LoanResource extends JsonResource
             'payDay'                =>$this->payDay,
             'paySlip'               =>$this->paySlip,
 //            'gross'                 =>$this->gross,
-//            'net'                   =>$this->net,
+            'net'                   =>$this->net,
 //            'referenceLetter'       =>$this->reference_letter,
 //            'coWorkers'            =>$coWorkers,
 //            'bankStatement'         =>$this->bank_statement,

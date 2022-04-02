@@ -61,18 +61,19 @@
                                     <div>{{loan.appliedDate}}</div>
                                     <div class="text-sm text-gray-400">Applied Date</div>
                                 </div>
-                                <div class="m-4" v-show="loan.dueDate">
-                                    <div>{{loan.dueDate}}</div>
-                                    <div class="text-sm text-gray-400">Due Date</div>
-                                </div>
-                                <div class="m-4" v-show="loan.guarantorDate">
-                                    <div>{{loan.guarantorDate}}</div>
-                                    <div class="text-sm text-gray-400">Guarantor Approval</div>
-                                </div>
                                 <div class="m-4" v-show="loan.approvedDate">
                                     <div>{{loan.approvedDate}}</div>
                                     <div class="text-sm text-gray-400">Approved Date</div>
                                 </div>
+                                <div class="m-4" v-show="loan.dueDate">
+                                    <div>{{loan.dueDate}}</div>
+                                    <div class="text-sm text-gray-400">Due Date</div>
+                                </div>
+<!--                                <div class="m-4" v-show="loan.guarantorDate">
+                                    <div>{{loan.guarantorDate}}</div>
+                                    <div class="text-sm text-gray-400">Guarantor Approval</div>
+                                </div>-->
+
 
                                 <div class="m-4" v-show="loan.closedDate">
                                     <div>{{loan.closedDate}}</div>
@@ -85,7 +86,7 @@
 
                             <div class="p-12 w-full flex justify-center">
                                 <div>
-                                    <div class="text-7xl text-center font-extrabold mt-6">{{ loan.score }}%</div>
+                                    <div class="text-2xl sm:text-5xl md:text-7xl text-center font-extrabold mt-6">{{ loan.score }}%</div>
                                 </div>
                             </div>
 
@@ -104,13 +105,13 @@
 
 
 
-                                    <div class="grid grid-cols-1 md:grid-cols-2">
 
-                                        <div class="col-span-2 ">
+
+                                        <div class="">
                                             <span class="text-lg text-gray-400">First Name</span>
                                             <span class="ml-2 rounded-full p-1 bg-gray-200 text-gray-600 text-sm font-bold">{{loan.firstName.score}}%</span>
                                         </div>
-
+                                    <div class="grid grid-cols-1 md:grid-cols-2">
                                         <div class="mt-2" >
                                             <div>{{loan.firstName.form}}</div>
                                             <div class="text-sm text-gray-400">Loan Form</div>
@@ -119,12 +120,14 @@
                                             <div>{{loan.firstName.employee}}</div>
                                             <div class="text-sm text-gray-400">Employee Data</div>
                                         </div>
+                                    </div>
 
-                                        <div class="col-span-2 mt-4">
+
+                                        <div class=" mt-4">
                                             <span class="text-lg text-gray-400">Middle Name</span>
                                             <span class="ml-2 rounded-full p-1 bg-gray-200 text-gray-600 text-sm font-bold">{{loan.middleName.score}}%</span>
                                         </div>
-
+                                    <div class="grid grid-cols-1 md:grid-cols-2">
                                         <div class="mt-2" >
                                             <div>{{loan.middleName.form}}</div>
                                             <div class="text-sm text-gray-400">Loan Form</div>
@@ -133,12 +136,13 @@
                                             <div>{{loan.middleName.employee}}</div>
                                             <div class="text-sm text-gray-400">Employee Data</div>
                                         </div>
+                                    </div>
 
-                                        <div class="col-span-2 mt-4">
+                                        <div class="mt-4">
                                             <span class="text-lg text-gray-400">Last Name</span>
                                             <span class="ml-2 rounded-full p-1 bg-gray-200 text-gray-600 text-sm font-bold">{{loan.lastName.score}}%</span>
                                         </div>
-
+                                    <div class="grid grid-cols-1 md:grid-cols-2">
                                         <div class="mt-2" >
                                             <div>{{loan.lastName.form}}</div>
                                             <div class="text-sm text-gray-400">Loan Form</div>
@@ -147,12 +151,13 @@
                                             <div>{{loan.lastName.employee}}</div>
                                             <div class="text-sm text-gray-400">Employee Data</div>
                                         </div>
+                                    </div>
 
-                                        <div class="col-span-2 mt-4">
+                                        <div class="mt-4">
                                             <span class="text-lg text-gray-400">Phone Number Mobile</span>
                                             <span class="ml-2 rounded-full p-1 bg-gray-200 text-gray-600 text-sm font-bold">{{loan.phoneNumberMobile.score}}%</span>
                                         </div>
-
+                                    <div class="grid grid-cols-1 md:grid-cols-2">
                                         <div class="mt-2" >
                                             <div>+265 {{loan.phoneNumberMobile.form}}</div>
                                             <div class="text-sm text-gray-400">Loan Form</div>
@@ -161,12 +166,13 @@
                                             <div>+265 {{loan.phoneNumberMobile.employee}}</div>
                                             <div class="text-sm text-gray-400">Employee Data</div>
                                         </div>
+                                    </div>
 
-                                        <div class="col-span-2 mt-4">
+                                        <div class="mt-4">
                                             <span class="text-lg text-gray-400">Phone Number Work</span>
                                             <span class="ml-2 rounded-full p-1 bg-gray-200 text-gray-600 text-sm font-bold">{{loan.phoneNumberWork.score}}%</span>
                                         </div>
-
+                                    <div class="grid grid-cols-1 md:grid-cols-2">
                                         <div class="mt-2" >
                                             <div>+265 {{loan.phoneNumberWork.form}}</div>
                                             <div class="text-sm text-gray-400">Loan Form</div>
@@ -175,11 +181,13 @@
                                             <div>+265 {{loan.phoneNumberWork.employee}}</div>
                                             <div class="text-sm text-gray-400">Employee Data</div>
                                         </div>
+                                    </div>
 
-                                        <div class="col-span-2 mt-4">
+                                        <div class="mt-4">
                                             <span class="text-lg text-gray-400">Email</span>
                                             <span class="ml-2 rounded-full p-1 bg-gray-200 text-gray-600 text-sm font-bold">{{loan.email.score}}%</span>
                                         </div>
+                                    <div class="grid grid-cols-1 md:grid-cols-2">
 
                                         <div class="mt-2" >
                                             <div>{{loan.email.form}}</div>
@@ -189,11 +197,13 @@
                                             <div>{{loan.email.employee}}</div>
                                             <div class="text-sm text-gray-400">Employee Data</div>
                                         </div>
+                                    </div>
 
-                                        <div class="col-span-2 mt-4">
+                                        <div class=" mt-4">
                                             <span class="text-lg text-gray-400">Physical Address</span>
                                             <span class="ml-2 rounded-full p-1 bg-gray-200 text-gray-600 text-sm font-bold">{{loan.physicalAddress.score}}%</span>
                                         </div>
+                                    <div class="grid grid-cols-1 md:grid-cols-2">
 
                                         <div class="mt-2" >
                                             <div>{{computePhysicalAddress(loan.physicalAddress.form)}}</div>
@@ -203,11 +213,12 @@
                                             <div>{{computePhysicalAddress(loan.physicalAddress.employee)}}</div>
                                             <div class="text-sm text-gray-400">Employee Data</div>
                                         </div>
+                                    </div>
 
-                                        <div class="col-span-2 mt-4">
+                                        <div class="mt-4">
                                             <span class="text-lg text-gray-400">Identification</span>
                                         </div>
-
+                                    <div class="grid grid-cols-1 md:grid-cols-2">
                                         <div class="mt-2" >
                                             <div>{{loan.nationalId}}</div>
                                             <div class="text-sm text-gray-400">National Id</div>
@@ -216,8 +227,6 @@
                                             <a :href="url(loan.nationalIdFile)" target="_blank"> <jet-button-secondary>View File</jet-button-secondary></a>
                                             <div class="mt-2 text-sm text-gray-400">National Id</div>
                                         </div>
-
-
                                     </div>
 
 
@@ -230,17 +239,18 @@
                                     <span class="text-xl ml-4">Workplace Information</span>
                                 </div>
                                 <div class="mt-4 mx-2 p-6  border-l-2 border-gray-200">
-                                    <div class="grid grid-cols-1 md:grid-cols-2">
+
                                         <!--                                        <div class="my-4 md:col-span-2 flex items-center justify-center">-->
                                         <!--                                            <img class="max-w-fit md:max-w-sm" :src="url(loan.photo)" alt="Photo">-->
                                         <!--                                            &lt;!&ndash;                                        <div class="text-sm text-gray-400">Photo</div>&ndash;&gt;-->
 
                                         <!--                                        </div>   -->
-                                        <div class="col-span-2 ">
+                                        <div class="">
                                             <span class="text-lg text-gray-400">Position</span>
                                             <span class="ml-2 rounded-full p-1 bg-gray-200 text-gray-600 text-sm font-bold">{{loan.position.score}}%</span>
                                         </div>
 
+                                    <div class="grid grid-cols-1 md:grid-cols-2">
                                         <div class="mt-2" >
                                             <div>{{loan.position.form}}</div>
                                             <div class="text-sm text-gray-400">Loan Form</div>
@@ -249,12 +259,14 @@
                                             <div>{{loan.position.employee}}</div>
                                             <div class="text-sm text-gray-400">Employee Data</div>
                                         </div>
+                                    </div>
 
-                                        <div class="col-span-2 mt-4">
+                                        <div class="mt-4">
                                             <span class="text-lg text-gray-400">Work Address</span>
                                             <span class="ml-2 rounded-full p-1 bg-gray-200 text-gray-600 text-sm font-bold">{{loan.workAddress.score}}%</span>
                                         </div>
 
+                                    <div class="grid grid-cols-1 md:grid-cols-2">
                                         <div class="mt-2" >
                                             <div>{{computeWorkAddress(loan.workAddress.form)}}</div>
                                             <div class="text-sm text-gray-400">Loan Form</div>
@@ -263,6 +275,7 @@
                                             <div>{{computeWorkAddress(loan.workAddress.employee)}}</div>
                                             <div class="text-sm text-gray-400">Employee Data</div>
                                         </div>
+                                    </div>
 
 
                                         <div class="col-span-2 mt-4">
@@ -270,6 +283,7 @@
                                             <span class="ml-2 rounded-full p-1 bg-gray-200 text-gray-600 text-sm font-bold">{{loan.contractDuration.score}}%</span>
                                         </div>
 
+                                    <div class="grid grid-cols-1 md:grid-cols-2">
                                         <div class="mt-2" >
                                             <div>{{loan.contractDuration.form}}</div>
                                             <div class="text-sm text-gray-400">Loan Form</div>
@@ -278,22 +292,28 @@
                                             <div>{{loan.contractDuration.employee}}</div>
                                             <div class="text-sm text-gray-400">Employee Data</div>
                                         </div>
-                                        <div class="mt-2 col-span-2">
-                                            <a :href="url(loan.contract)" target="_blank"> <jet-button-secondary>View File</jet-button-secondary></a>
-                                            <div class="mt-2 text-sm text-gray-400">Contract File</div>
-                                        </div>
+                                    </div>
+<!--                                        <div class="mt-2 col-span-2">-->
+<!--                                            <a :href="url(loan.contract)" target="_blank"> <jet-button-secondary>View File</jet-button-secondary></a>-->
+<!--                                            <div class="mt-2 text-sm text-gray-400">Contract File</div>-->
+<!--                                        </div>-->
 
-                                        <div class="col-span-2 mt-4">
+                                        <div class="mt-4">
                                             <span class="text-lg text-gray-400">Payment Details</span>
                                         </div>
 
+                                    <div class="grid grid-cols-1 md:grid-cols-2">
                                         <div class="mt-2" >
                                             <div>{{computePayDay(loan.payDay)}}</div>
                                             <div class="text-sm text-gray-400">Pay Day</div>
                                         </div>
                                         <div class="mt-2 md:ml-4" >
-                                            <a :href="url(loan.contract)" target="_blank"> <jet-button-secondary>View File</jet-button-secondary></a>
-                                            <div class="mt-2 text-sm text-gray-400">Contract File</div>
+                                            <a :href="url(loan.paySlip)" target="_blank"> <jet-button-secondary>View File</jet-button-secondary></a>
+                                            <div class="mt-2 text-sm text-gray-400">Pay Slip</div>
+                                        </div>
+                                        <div class="mt-2" >
+                                            <div>MK{{loan.net}}</div>
+                                            <div class="text-sm text-gray-400">Net Pay</div>
                                         </div>
                                     </div>
                                 </div>
@@ -303,13 +323,13 @@
                             <div class="mt-6">
                                 <div class="flex items-center justify-start">
                                     <div class="mt-0 p-1 h-6 w-6 rounded-full text-white text-center text-xs bg-gray-800 ">3</div>
-                                    <span class="text-xl ml-4">License Agreements</span>
+                                    <span class="text-xl ml-4">Loan Agreements</span>
                                 </div>
                                 <div class="mx-2 p-6  border-l-2 border-gray-200">
                                     <div class="grid grid-cols-1 md:grid-cols-2">
                                         <div class="">
                                             <div> <jet-button-secondary class="mt-4" @click.native="termsAndConditionsDialog=true">View File</jet-button-secondary></div>
-                                            <div class="mt-2 text-sm text-gray-600">Borrower License Agreement File</div>
+                                            <div class="mt-2 text-sm text-gray-600">Employee Loan Agreement File</div>
                                             <jet-dialog-modal :show="termsAndConditionsDialog" @close="closeModal">
                                                 <template #title>
                                                     Zachangu Microfinance Agency
@@ -326,7 +346,7 @@
                                                 </template>
                                             </jet-dialog-modal>
                                         </div>
-                                        <div class="md:ml-4" >
+<!--                                        <div class="md:ml-4" >
                                             <div> <jet-button-secondary class="mt-4" @click.native="termsAndConditionsGuarantorDialog=true">View File</jet-button-secondary></div>
                                             <div class="mt-2 text-sm text-gray-600">Guarantor License Agreement File</div>
 
@@ -345,7 +365,7 @@
                                                     </jet-button-secondary>
                                                 </template>
                                             </jet-dialog-modal>
-                                        </div>
+                                        </div>-->
                                     </div>
                                 </div>
                             </div>
