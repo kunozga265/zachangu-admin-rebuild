@@ -41,7 +41,7 @@
 
                                         <div class="mt-4 md:col-span-2">
                                             <div>{{employer.physicalAddressName}} P. O. Box {{employer.physicalAddressBox}} {{employer.physicalAddressLocation}}</div>
-                                            <div class="text-sm text-gray-400">Name</div>
+                                            <div class="text-sm text-gray-400">Address</div>
                                         </div>
 
                                         <div class="mt-6">
@@ -81,13 +81,14 @@
                                 </template>
                             </jet-dialog-modal>
 
-                            <jet-section-border />
+                            <jet-section-border class="mt-4" />
                         </div>
                         <div class="grid grid-cols-1">
                             <employee
-                                v-for="employee in $page.props.employees"
+                                v-for="(employee,index) in $page.props.employees"
                                 :key="employee.id"
                                 :employee="employee"
+                                :index="index"
                           />
 
                             <div   v-if="($page.props.employees).length==0" class="m-2 p-6">

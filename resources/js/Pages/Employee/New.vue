@@ -110,6 +110,21 @@
                                         </div>
                                     </div>
 
+                                    <div class="mt-6 text-lg text-gray-400">Contract Details</div>
+
+                                    <div class="grid grid-cols-1 md:grid-cols-2">
+                                        <div class="mt-4 ">
+                                            <jet-label for="contractDuration" value="Contract Expiry Date" />
+                                            <vue-date-time-picker
+                                                v-model="form.contractDuration"
+                                                onlyDate
+                                                minDate="today"
+                                                format="YYYY-MM-DD"
+                                            />
+                                            <!--                                            <jet-input id="nationalId" type="text" class="mt-1 block w-full" v-model="form.nationalId" required autocomplete="National Id" />-->
+                                        </div>
+                                    </div>
+
                                     <div class="mt-6 text-lg text-gray-400">Work Address</div>
 
                                     <div class="grid grid-cols-1 md:grid-cols-2">
@@ -127,20 +142,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="mt-6 text-lg text-gray-400">Contract Details</div>
 
-                                    <div class="grid grid-cols-1 md:grid-cols-2">
-                                        <div class="mt-4 ">
-                                            <jet-label for="contractDuration" value="Contract Expiry Date" />
-                                            <vue-date-time-picker
-                                                v-model="form.contractDuration"
-                                                onlyDate
-                                                minDate="today"
-                                                format="YYYY-MM-DD"
-                                            />
-<!--                                            <jet-input id="nationalId" type="text" class="mt-1 block w-full" v-model="form.nationalId" required autocomplete="National Id" />-->
-                                        </div>
-                                    </div>
 
 
                                 </div>

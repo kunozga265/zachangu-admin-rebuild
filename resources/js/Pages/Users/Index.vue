@@ -12,22 +12,24 @@
                     <div class="p-12 sm:px-20 bg-white border-b border-gray-200">
                         <div class="grid grid-cols-1">
                             <div
-                                v-for="_user in $page.props.users.data"
+                                v-for="(_user,index) in $page.props.users.data"
                                 :key="_user.id"
                             >
                                 <inertia-link
-                                    class="cursor-pointer m-2 p-2"
+                                    class="cursor-pointer"
                                     :href="route('users.show',{'id':_user.id})"
                                 >
-                                    <div class="text-xl text-gray-800 font-bold ">
+                                    <div class="text-base sm:text-md text-gray-800 font-bold ">
+                                        <span>{{index+1}}. </span>
                                         {{_user.firstName}} {{_user.lastName}}
+                                        <span class="ml-2 rounded-full py-1 px-2 bg-gray-200 text-gray-600 text-xs font-bold"> {{_user.loansCount}} {{_user.loansCount==1?'Loan':'Loans'}}</span>
                                     </div>
-                                    <div class=" text-gray-400">
+                                    <div class="text-sm text-gray-400">
                                         {{_user.email}}
                                     </div>
-                                    <div class="font-semibold">
-                                        {{_user.loansCount}} {{_user.loansCount==1?'Loan':'Loans'}}
-                                    </div>
+                                    <!--                                    <div class="font-semibold">
+                                                                            {{_user.loansCount}} {{_user.loansCount==1?'Loan':'Loans'}}
+                                                                        </div>-->
                                 </inertia-link>
                                 <jet-section-border />
                             </div>

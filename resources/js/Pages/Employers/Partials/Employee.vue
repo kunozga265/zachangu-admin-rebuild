@@ -2,15 +2,17 @@
     <div>
         <div
             @click="dialog=true"
-            class="cursor-pointer m-2 p-2">
+            class="cursor-pointer">
 
-            <div class="text-xl text-gray-800 font-bold ">
+            <div class="text-base sm:text-md text-gray-800 font-bold ">
+                <span>{{index+1}}. </span>
                 {{employee.firstName}} {{employee.lastName}}
+                <span class="ml-2 rounded-full py-1 px-2 bg-gray-200 text-gray-600 text-xs font-bold"> {{employee.position}}</span>
             </div>
-            <div class=" text-gray-400">
-                {{employee.position}}
-            </div>
-            <div class="text-gray-400">
+<!--            <div class=" text-gray-400">-->
+<!--                {{employee.position}}-->
+<!--            </div>-->
+            <div class="text-sm text-gray-400">
                 Contract valid until {{employee.contractDuration}}
             </div>
         </div>
@@ -175,7 +177,7 @@ import JetButton from '@/Jetstream/Button'
 export default {
     name: "Employee",
     props:[
-        'employee'
+        'employee','index'
     ],
     components:{
         JetSectionBorder,

@@ -16,25 +16,25 @@
                                     + New Employer
                                 </jet-button>
                             </inertia-link>
-                            <jet-section-border />
+                            <jet-section-border class="mt-4" />
                         </div>
                         <div class="grid grid-cols-1">
                             <div
-                                v-for="employer in $page.props.employers.data"
+                                v-for="(employer,index) in $page.props.employers.data"
                                 :key="employer.id"
                             >
                                 <inertia-link
-                                    class="cursor-pointer m-2 p-2"
+                                    class="cursor-pointer"
                                     :href="route('employer.show',{'id':employer.id})"
                                 >
-                                    <div class="text-xl text-gray-800 font-bold ">
+                                    <div class="text-base sm:text-md text-gray-800 font-bold ">
+                                        <span>{{index+1}}. </span>
                                         {{employer.name}}
+                                        <span class="ml-2 rounded-full py-1 px-2 bg-gray-200 text-gray-600 text-xs font-bold"> {{employer.employeesCount}} {{employer.employeesCount==1?'Employee':'Employees'}}</span>
+
                                     </div>
-                                    <div class=" text-gray-400">
+                                    <div class="text-sm text-gray-400">
                                         {{employer.address}}
-                                    </div>
-                                    <div class="font-semibold">
-                                        {{employer.employeesCount}} {{employer.employeesCount==1?'Employee':'Employees'}}
                                     </div>
                                 </inertia-link>
                                  <jet-section-border />

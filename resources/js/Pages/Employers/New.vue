@@ -53,7 +53,7 @@
 
                             <div class="grid grid-cols-1 md:grid-cols-2">
                                 <div class="" >
-                                    <jet-label for="proxyName" value="Name" />
+                                    <jet-label for="proxyName" value="Full Name" />
                                     <jet-input id="proxyName" type="text" class="mt-1 block w-full" v-model="form.proxyName" required  autocomplete="Name" />
                                 </div>
                                 <div class="mt-4 md:ml-4 md:mt-0">
