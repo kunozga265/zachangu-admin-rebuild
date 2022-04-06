@@ -18,7 +18,7 @@ class EmployersResource extends JsonResource
             'id'                => $this->id,
             'name'              => $this->name,
             'email'             => $this->email,
-            'address'           => $this->address,
+            'address'           => $this->physicalAddressName. " P. O. Box " .$this->physicalAddressBox . ", " . $this->physicalAddressLocation,
             'letter'            => $this->letter,
             'employeesCount'    => $this->employees->count()
         ];
