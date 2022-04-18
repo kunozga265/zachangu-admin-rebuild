@@ -9,7 +9,7 @@
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                    <div class="p-12 sm:px-20 bg-white border-b border-gray-200">
+                    <div class="px-6 p-12 sm:px-20 bg-white border-b border-gray-200">
                         <div>
 
                             <jet-secondary-button @click.na.native="dialog=true">
@@ -64,25 +64,14 @@
                             </jet-dialog-modal>
 
 
-                            <jet-section-border />
+                            <jet-section-border class="mt-4" />
                         </div>
                         <div class="grid grid-cols-1">
-                            <div
+                            <loan
                                 v-for="loan in $page.props.loans"
                                 :key="loan.id"
-                            >
-                                <inertia-link
-                                    class="cursor-pointer m-2 p-2"
-                                    :href="route('loan.show',{code:loan.code})"
-                                >
-                                    <div class="text-4xl text-gray-800 font-bold ">MK{{ loan.amount }}</div>
-                                    <div class=" flex justify-start">
-                                        <alert-circle :fill-color="getStatusColor(loan.progress)"/>
-                                        <span class="ml-2 text-gray-400">{{getStatus(loan.progress)}}</span>
-                                    </div>
-                                    <span class="text-gray-400">Created on: {{(loan.created_at).substr(0,10)}}</span>
-                                </inertia-link>
-                            </div>
+                                :loan="loan"
+                            />
 
                             <div   v-if="($page.props.loans).length==0" class="m-2 p-6">
                                 <div>No Loans found.</div>
@@ -106,7 +95,7 @@ import JetSectionBorder from '@/Jetstream/SectionBorder'
 import JetButton from '@/Jetstream/Button'
 import JetSecondaryButton from '@/Jetstream/SecondaryButton'
 import JetDialogModal from '@/Jetstream/DialogModal'
-import AlertCircle from 'vue-material-design-icons/AlertCircle.vue'
+import Loan from '@/Pages/Components/Loan'
 
 export default {
     name: "Show",
@@ -120,7 +109,7 @@ export default {
         JetButton,
         JetSecondaryButton,
         AppLayout,
-        AlertCircle,
+        Loan,
 
 
     },

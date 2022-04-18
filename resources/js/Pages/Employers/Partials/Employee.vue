@@ -13,7 +13,7 @@
 <!--                {{employee.position}}-->
 <!--            </div>-->
             <div class="text-sm text-gray-400">
-                Contract valid until {{employee.contractDuration}}
+                Contract validity: {{employee.contractDuration}}
             </div>
         </div>
         <jet-section-border />

@@ -9,16 +9,16 @@
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                    <div class="p-12 sm:px-20 bg-white border-b border-gray-200">
+                    <div class="px-6 p-12 sm:px-20 bg-white border-b border-gray-200">
                         <div>
                             <inertia-link  :href="route('employee.new',{id:employer.id})">
-                                <jet-button>
+                                <jet-button class="ml-0 m-2"  >
                                     + New Employee
                                 </jet-button>
                             </inertia-link>
 
 
-                            <jet-secondary-button @click.native="dialog=true">
+                            <jet-secondary-button @click.native="dialog=true" class="ml-0 sm:m-2">
                                 Profile Information
                             </jet-secondary-button>
 
@@ -85,7 +85,7 @@
                         </div>
                         <div class="grid grid-cols-1">
                             <employee
-                                v-for="(employee,index) in $page.props.employees"
+                                v-for="(employee,index) in $page.props.employees.data"
                                 :key="employee.id"
                                 :employee="employee"
                                 :index="index"

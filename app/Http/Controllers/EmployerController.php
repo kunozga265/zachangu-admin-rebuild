@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\EmployeeResource;
 use App\Models\Employer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
@@ -26,16 +27,16 @@ class EmployerController extends Controller
         if (is_object($employer)){
 
             $employees=$employer->employees;
-            foreach($employees as $employee){
+           /* foreach($employees as $employee){
                 $employee->contractDuration=date('jS F, Y',$employee->contractDuration);
                 $employee->physicalAddress=json_decode($employee->physicalAddress);
                 $employee->workAddress=json_decode($employee->workAddress);
-            }
+            }*/
 
 
             return Inertia::render('Employers/Show',[
                'employer'   => $employer,
-               'employees'  => $employees
+               'employees'  => EmployeeResource::collection($employees)
             ]);
 
         }else

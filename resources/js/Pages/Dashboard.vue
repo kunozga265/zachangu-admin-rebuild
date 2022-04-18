@@ -9,7 +9,7 @@
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                    <div class="p-6 sm:px-20 bg-white border-b border-gray-200 flex justify-end">
+                    <div class="px-6 p-6 sm:px-20 bg-white border-b border-gray-200 flex justify-end">
 
                         <span class="rounded p-2 bg-red-200 text-red-600 font-bold text-sm">{{due.length}} Due</span>
                         <span class="rounded p-2 bg-yellow-200 text-yellow-600 font-bold text-sm ml-2">{{pending.length}} Pending</span>
@@ -17,8 +17,8 @@
                     </div>
 
                     <div class="bg-gray-200 bg-opacity-25 grid grid-cols-1 border-b border-gray-200" >
-                        <div class="p-12 sm:px-20">
-                            <div
+                        <div class="px-6 p-12 sm:px-20">
+<!--                            <div
                                 v-for="loan in due"
                                 :key="loan.id"
                             >
@@ -41,16 +41,20 @@
                                 :key="loan.id"
                             >
                                 <inertia-link
-                                    class="cursor-pointer p-4"
+                                    class="cursor-pointer "
                                     :href="route('loan.show',{code:loan.code})"
                                 >
-                                    <div class="text-4xl text-gray-800 font-bold ">MK{{ loan.amount }}</div>
-                                    <div class=" flex justify-start">
-                                        <alert-circle :fill-color="getStatusColor(loan.progress)"/>
-                                        <span class="ml-2 text-gray-600">{{getStatus(loan.progress)}}</span>
+                                    <div class="md:p-4">
+                                        <div class="text-2xl md:text-4xl text-gray-800 font-bold ">MK{{ loan.amount }}</div>
+                                        <div class=" flex justify-start">
+                                            <alert-circle :fill-color="getStatusColor(loan.progress)"/>
+                                            <span class="ml-2 text-gray-600 text-sm md:text-base">{{getStatus(loan.progress)}}</span>
+                                        </div>
                                     </div>
-                                    <span class="text-gray-400">Created on: {{(loan.created_at).substr(0,10)}}</span>
+
+&lt;!&ndash;                                    <span class="text-gray-400">Created on: {{(loan.created_at).substr(0,10)}}</span>&ndash;&gt;
                                 </inertia-link>
+                                <jet-section-border/>
                             </div>
 
                             <div
@@ -68,7 +72,23 @@
                                     </div>
                                     <span class="text-gray-400">Created on: {{(loan.created_at).substr(0,10)}}</span>
                                 </inertia-link>
-                            </div>
+                            </div>-->
+
+                            <loan
+                                v-for="loan in due"
+                                :key="loan.id"
+                                :loan="loan"
+                            />
+                            <loan
+                                v-for="loan in pending"
+                                :key="loan.id"
+                                :loan="loan"
+                            />
+                            <loan
+                                v-for="loan in active"
+                                :key="loan.id"
+                                :loan="loan"
+                            />
 
                             <div   v-if="(active).length==0 && (due).length==0  && (pending).length==0 " class="m-2 p-6">
                                 <div>No Loans found.</div>
@@ -91,13 +111,14 @@
 
                 <template #content class="p-6 md:p-12">
                     <div class="text-gray-600">Select the date you want to start exporting from</div>
-                    <div class="p-6 w-full">
+                    <div class="p-6">
                         <vue-date-time-picker
                             v-model="date"
                             onlyDate
                             inline
                             minDate="today"
                             format="YYYY-MM-DD"
+                            class="w-full"
                         />
                     </div>
 
@@ -123,9 +144,10 @@
     import AppLayout from '@/Layouts/AppLayout'
     import Welcome from '@/Jetstream/Welcome'
     import JetButton from '@/Jetstream/Button'
-    import AlertCircle from 'vue-material-design-icons/AlertCircle.vue'
     import JetDialogModal from '@/Jetstream/DialogModal'
     import JetButtonSecondary from '@/Jetstream/SecondaryButton'
+    import Loan from '@/Pages/Components/Loan'
+
 
     export default {
         props:[
@@ -138,8 +160,9 @@
             Welcome,
             JetButton,
             JetDialogModal,
-        JetButtonSecondary,
-            AlertCircle
+            JetButtonSecondary,
+            Loan,
+
         },
           data() {
             return {
@@ -159,56 +182,6 @@
             },
             closeModal() {
                 this.dialog = false
-            },
-            getStatus(progress){
-                switch (progress){
-                    case '0':
-                        return 'Finish the applying process';
-                        break;
-                    case '1':
-                        return 'Waiting for guarantor to approve';
-                        break;
-                    case '2':
-                        return 'Waiting for employer to approve';
-                        break;
-                    case '3':
-                        return 'Active';
-                        break;
-                    case '4':
-                        return 'Closed';
-                        break;
-                    case '5':
-                        return 'Defaulted';
-                        break;
-                    case '6':
-                        return 'Over Due';
-                        break;
-                    case '7':
-                        return 'Rejected';
-                        break;
-                    default:
-                        return '-';
-                        break;
-                }
-            },
-            getStatusColor(progress){
-                switch (progress){
-                    case '0':
-                        return '#FBBF24';
-                        break;
-                    case '1':
-                        return '#FBBF24';
-                        break;
-                    case '2':
-                        return '#FBBF24';
-                        break;
-                    case '3':
-                        return '#4ADE80';
-                        break;
-                    default:
-                        return '#EF4444';
-                        break;
-                }
             },
         }
     }
