@@ -38,6 +38,11 @@ Route::group(['middleware'=>['auth:sanctum','verified','roles']],function () {
         'roles' =>['admin']
     ])->name('dashboard');
 
+    Route::get('/notifications', [
+        "uses" => "App\Http\Controllers\NotificationController@index",
+        'roles' =>['admin']
+    ])->name('notifications');
+
     Route::group(['prefix'=>'employers'],function (){
 
         Route::get('/', [

@@ -92,7 +92,13 @@ class LoanController extends Controller
                     'approvedDate'=>Carbon::now()->getTimestamp()
                 ]);
 
-                Mail::to($loan->email)->cc('admin@zachanguloans.com')->send(new ApprovalMail($loan));
+                try {
+                    Mail::to($loan->email)->cc('admin@zachanguloans.com')->send(new ApprovalMail($loan));
+                }catch (\Swift_TransportException $exception){
+                    //do something
+                }
+
+
 
             }else
                 return Redirect::back()->with('error','Due date exceeded. Cannot approve loan.');

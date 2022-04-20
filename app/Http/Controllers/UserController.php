@@ -60,45 +60,6 @@ class UserController extends Controller
 
     }
 
-    public function employerSelect(Request $request)
-    {
-        Validator::make($request->all(), [
-            'employerId' => ['required', 'integer']
-        ])->validate();
 
-        $user=User::find(Auth::id());
-        $employer=Employer::find($request->employerId);
-        $errors=[];
 
-        if (is_object($employer)){
-            $employee=$employer->employees()->where('nationalId',$user->nationalId)->first();
-            if(is_object($employee)){
-                $user->update([
-                    'employer_id'=>$employer->id
-                ]);
-
-//                return Inertia::render('Dashboard');
-                return Redirect::route('dashboard');
-
-            }else{
-                array_push($errors,'You are not registered under this employer');
-                return Redirect::back()->with('error','You are not registered under this employer');
-            }
-        }else{
-            array_push($errors,'The employer does not exist');
-            return Redirect::back()->with('error','The employer does not exist');
-
-        }
-
-//        return Redirect::back(302)->with('error',$errors);
-//        return Inertia::render('Dashboard',[
-//            'errors'=>$errors,s
-//            'employers'=>Employer::all(),
-//        ]);
-    }
-
-    public function guarantorDashboardView()
-    {
-        return Inertia::render('Guarantor/Dashboard');
-    }
 }

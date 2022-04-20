@@ -61,8 +61,21 @@
 
                         <div class="hidden sm:flex sm:items-center sm:ml-6">
 
+                            <!-- Notifications Icon -->
+                            <inertia-link :href="route('notifications')">
+                                <div class="ml-3 relative hover:cursor-pointer">
+                                    <div v-show="$page.props.notificationsCount > 0" style="font-size:10px" class="absolute right-0 h-4 w-4 rounded-full text-white font-bold grid justify-items-center text-xs bg-red-500 flex items-center ">
+                                        {{$page.props.notificationsCount}}
+                                    </div>
+                                    <div class="h-9 w-9 rounded-full hover:bg-gray-100  grid justify-items-center flex items-center">
+                                        <img style="height:28px" :src="$page.props.publicPath+'images/notifications.svg'" alt="Notifications Icon">
+                                    </div>
+                                </div>
+                            </inertia-link>
+
+
                             <!-- Settings Dropdown -->
-                            <div class="ml-3 relative">
+                            <div class="ml-1 relative">
                                 <jet-dropdown align="right" width="48">
                                     <template #trigger>
                                         <span class="inline-flex rounded-md">
@@ -101,7 +114,19 @@
 
                         <!-- Hamburger -->
                         <div class="-mr-2 flex items-center sm:hidden">
-                            <button @click="showingNavigationDropdown = ! showingNavigationDropdown" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out">
+                            <!-- Notifications Icon -->
+                            <inertia-link :href="route('notifications')">
+                                <div class="ml-3 relative hover:cursor-pointer">
+                                    <div v-show="$page.props.notificationsCount > 0" style="font-size:10px" class="absolute right-0 h-4 w-4 rounded-full text-white font-bold grid justify-items-center text-xs bg-red-500 flex items-center ">
+                                        {{$page.props.notificationsCount}}
+                                    </div>
+                                    <div class="h-9 w-9 rounded-full hover:bg-gray-100  grid justify-items-center flex items-center">
+                                        <img style="height:28px" :src="$page.props.publicPath+'images/notifications.svg'" alt="Notifications Icon">
+                                    </div>
+                                </div>
+                            </inertia-link>
+
+                            <button @click="showingNavigationDropdown = ! showingNavigationDropdown" class="ml-1 inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out">
                                 <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                                     <path :class="{'hidden': showingNavigationDropdown, 'inline-flex': ! showingNavigationDropdown }" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                                     <path :class="{'hidden': ! showingNavigationDropdown, 'inline-flex': showingNavigationDropdown }" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />

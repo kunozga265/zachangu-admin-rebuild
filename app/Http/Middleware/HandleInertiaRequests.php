@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Notification;
 use App\Models\Role;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
@@ -66,8 +67,10 @@ class HandleInertiaRequests extends Middleware
                     ];
                 }else
                     return null;
-
-            }
+            },
+            'notificationsCount'=> function() use ($request){
+                return Notification::where('read',0)->get()->count();
+            },
         ]);
     }
 }
